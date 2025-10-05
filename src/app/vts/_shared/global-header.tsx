@@ -3,17 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAuth } from "../../context/AuthContext";
 
 export default function GlobalHeader() {
   const url = usePathname();
-  const { logout } = useAuth();
   const isInsights = url?.includes("/vts/insights");
   const isMarket = url?.includes("/vts/market");
   const isLease = url?.includes("/vts/lease");
 
   const handleLogout = () => {
-    logout();
+    // Logout functionality disabled
+    console.log("Logout clicked");
   };
 
   return (
