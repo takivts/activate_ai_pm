@@ -1,12 +1,14 @@
 import { useAppContext, VtsAiPersona } from "../../../context/AppContext";
 
+interface VtsAiHeaderProps {
+  onReset?: () => void;
+  showPersonaToggle?: boolean;
+}
+
 export default function VtsAiHeader({
   onReset,
   showPersonaToggle = true,
-}: {
-  onReset?: () => void;
-  showPersonaToggle?: boolean;
-}) {
+}: VtsAiHeaderProps) {
   const { setVtsAiContentType, vtsAiPersona, setVtsAiPersona } = useAppContext();
 
   const handleResetVtsAi = () => {
