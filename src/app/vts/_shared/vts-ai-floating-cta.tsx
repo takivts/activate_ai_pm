@@ -1,11 +1,13 @@
 import VtsAiDefault from "./vts-ai/vts-ai-default";
 import VtsAiTenantProfile from "./vts-ai/vts-ai-tenant-profile";
+import VtsAiAssistant from "./vts-ai/vts-ai-assistant";
 import { usePromptCycle } from "./hooks/usePromptCycle";
 import { useAppContext } from "../../context/AppContext";
 import { motion, AnimatePresence } from "framer-motion";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import vtsAiMorph from "../../../../public/vts-ai-morph.json";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const promptVariants = {
   hidden: {
@@ -29,9 +31,18 @@ export default function VtsAiFloatingCTA({ className }: { className?: string }) 
   const { isVtsAiOpen, setIsVtsAiOpen, vtsAiContentType, setVtsAiContentType } = useAppContext();
   const lottieRef = useRef<LottieRefCurrentProps>(null);
   const [wasClosedFromOverlay, setWasClosedFromOverlay] = useState(false);
+  const pathname = usePathname();
 
   const FormatVtsAiContent = () => {
-    if (vtsAiContentType === "tenant") {
+    // Show Assistant modal only on deals profile page
+    // Check if pathname includes "deals" and "profile" to handle dynamic routes
+    const isDealsProfile = pathname?.includes("/deals/") && pathname?.includes("/profile");
+    
+    console.log("VTS AI Debug:", { pathname, isDealsProfile, vtsAiContentType });
+    
+    if (isDealsProfile) {
+      return <VtsAiAssistant className="absolute right-24 bottom-16" isOpen={isVtsAiOpen} />;
+    } else if (vtsAiContentType === "tenant") {
       return <VtsAiTenantProfile className="absolute right-24 bottom-16" isOpen={isVtsAiOpen} />;
     } else {
       return <VtsAiDefault className="absolute right-24 bottom-16" isOpen={isVtsAiOpen} />;
@@ -67,7 +78,11 @@ export default function VtsAiFloatingCTA({ className }: { className?: string }) 
   }, []);
 
   const handleFloatingCTAClick = () => {
-    setVtsAiContentType("default");
+    // Don't set content type on deals profile page - let assistant handle it
+    const isDealsProfile = pathname?.includes("/deals/") && pathname?.includes("/profile");
+    if (!isDealsProfile) {
+      setVtsAiContentType("default");
+    }
     setIsVtsAiOpen(!isVtsAiOpen);
     lottieRef.current?.setSpeed(2);
     if (!isVtsAiOpen) {
@@ -78,11 +93,13 @@ export default function VtsAiFloatingCTA({ className }: { className?: string }) 
     }
   };
 
+  const isDealsProfile = pathname?.includes("/deals/") && pathname?.includes("/profile");
+  
   const { currentPrompt } = usePromptCycle({
     promptDuration: 8000,
     promptDelay: 8000,
     initialDelay: 5000,
-    isActive: !isVtsAiOpen,
+    isActive: !isVtsAiOpen && !isDealsProfile, // Disable prompts on deals profile
   });
 
   const handlePromptClick = () => {

@@ -1,394 +1,207 @@
 "use client";
 
-import { useAppContext } from "@/app/context/AppContext";
-import { MarketAnalysisData } from "@/app/vts/_shared/data/vts-ai-prompts";
-import ProposalCard from "@/app/vts/_shared/proposal-card";
-import TabRow from "@/app/vts/_shared/tab-row";
-import { vtsAiPromptsWithContext } from "@/app/vts/_shared/data/vts-ai-prompts";
-import Image from "next/image";
-import { useEffect, useRef } from "react";
-import Lottie, { LottieRefCurrentProps } from "lottie-react";
-import vtsAiSparkle from "../../../../../../public/sparkle.json";
-import vtsAiSparkleWhite from "../../../../../../public/sparkle-white.json";
-import { Pane } from "tweakpane";
-
-export default function DealProfilePage() {
-  const { setVtsAiContentType, setIsVtsAiOpen, isVtsAiOpen, setIsUpsell, setIsPromptError, setShowChatInput } =
-    useAppContext();
-
-  useEffect(() => {
-    const paneContainer = document.createElement("div");
-    paneContainer.className = "fixed bottom-6 left-6 z-50";
-    document.body.appendChild(paneContainer);
-
-    const PARAMS = {
-      isUpsell: false,
-      isPromptError: false,
-      showChatInput: false,
-    };
-
-    const pane = new Pane({
-      title: "Prototype Controls",
-      container: paneContainer,
-      expanded: false,
-    });
-
-    const isUpsellBinding = pane.addBinding(PARAMS, "isUpsell", {
-      label: "Show Upsell",
-    });
-
-    const isPromptErrorBinding = pane.addBinding(PARAMS, "isPromptError", {
-      label: "Show Prompt Error",
-    });
-
-    const showChatInputBinding = pane.addBinding(PARAMS, "showChatInput", {
-      label: "Show Chat Input",
-    });
-
-    isUpsellBinding.on("change", (e) => {
-      setIsUpsell(e.value);
-    });
-
-    isPromptErrorBinding.on("change", (e) => {
-      setIsPromptError(e.value);
-    });
-
-    showChatInputBinding.on("change", (e) => {
-      setShowChatInput(e.value);
-    });
-
-    return () => {
-      pane.dispose();
-      if (paneContainer.parentNode) {
-        paneContainer.parentNode.removeChild(paneContainer);
-      }
-    };
-  }, [setIsUpsell, setIsPromptError, setShowChatInput]);
-
-  const mainTabs = [
-    { label: "Info" },
-    { label: "Proposals", isActive: true },
-    { label: "Approval" },
-    { label: "Tenant Coordination" },
-  ];
-
-  const proposalTabs = [{ label: "Proposals", isActive: true }, { label: "Analysis" }, { label: "Cashflow" }];
-
-  const handleVtsAiContentType = (contentType: string, data?: MarketAnalysisData) => {
-    if (isVtsAiOpen) {
-      setVtsAiContentType(contentType, data);
-    } else {
-      setVtsAiContentType(contentType, data);
-      setTimeout(() => {
-        setIsVtsAiOpen(true);
-      }, 0);
-    }
-  };
-
-  const marketAverageRef = useRef<LottieRefCurrentProps>(null);
-  const newProposalRef = useRef<LottieRefCurrentProps>(null);
-
-  useEffect(() => {
-    marketAverageRef.current?.playSegments([0, 25], true);
-    newProposalRef.current?.playSegments([0, 25], true);
-  }, []);
-
+export default function ActivatePage() {
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex flex-col gap-2 p-8">
-        <div className="text-xs text-gray-700">
-          <span className="">VTS Lease</span> &gt; <span className="text-gray-700">Deals</span> &gt;{" "}
-          <span className="font-bold text-gray-700">Deal profile</span>
-        </div>
-        <div className="flex justify-between gap-2">
-          <div className="flex items-center gap-2 truncate">
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-gray-300 align-middle font-bold text-white">
-              <Image
-                src="/logo-google.svg"
-                alt="Google"
-                className="size-8"
-                width={40}
-                height={40}
-                style={{ objectFit: "contain" }}
-              />
-            </span>
-            <h1 className="truncate text-4xl font-bold">Google</h1>
-          </div>
-          <div className="text-vts-purple-700 flex items-center gap-4 pr-8 text-sm">
-            <div className="text-vts-purple-700 hover:bg-vts-purple-100 flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1.5 text-sm whitespace-nowrap transition-all duration-200">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
-                />
-              </svg>
-              Edit Deal
-            </div>
-            <div className="text-vts-purple-700 hover:bg-vts-purple-100 flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1.5 text-sm whitespace-nowrap transition-all duration-200">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
-                />
-              </svg>
-              Export
-            </div>
-            <span className="hover:bg-vts-purple-100 flex cursor-pointer items-center gap-1 truncate rounded-lg px-1 py-1 transition-all duration-200">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z"
-                />
-              </svg>
-            </span>
-          </div>
-        </div>
-        <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-2 text-sm">
-            <span className="text-gray-500">Standardized tenant</span>
-            <span className="cursor-pointer">Alphabet</span>
-          </div>
-          <div className="flex items-center gap-2 text-sm">
-            <span className="gap-2 text-gray-500">Market</span>
-            <span className="">New York, Midtown</span>
-            <span
-              className="text-vts-purple-700 flex cursor-pointer items-center gap-0.5 rounded-lg text-sm"
-              onClick={() => handleVtsAiContentType("default", vtsAiPromptsWithContext[0].payload)}
-              onMouseEnter={() => {
-                marketAverageRef.current?.setSpeed(0.75);
-                marketAverageRef.current?.playSegments(
-                  [
-                    [10, 25],
-                    [10, 25],
-                  ],
-                  true,
-                );
-              }}
-            >
-              <span className="relative">
-                Market averages
-                <span className="absolute -bottom-[2px] left-0 h-[3px] w-full rounded-full" />
-              </span>
-              <Lottie
-                lottieRef={marketAverageRef}
-                animationData={vtsAiSparkle}
-                autoplay={false}
-                loop={false}
-                className="z-50 size-5"
-              />
-            </span>
-          </div>
-          <div className="flex gap-8">
-            <div className="flex items-center gap-8">
-              <div className="flex items-center gap-2 text-sm">
-                <span className="text-sm text-gray-500">Deal lead</span>
-                <span className="text-vts-purple-700 cursor-pointer">John Doe</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <span className="text-gray-500">Stage</span>
-              <span className="flex w-32 items-center justify-between rounded-lg border border-transparent px-2 py-0 transition-all duration-200 hover:border-gray-300">
-                Lease out
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-4"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+    <div className="relative h-screen w-full overflow-hidden">
+      {/* Use the exact screenshot as background */}
+      <div
+        className="absolute inset-0 bg-cover bg-top bg-no-repeat"
+        style={{
+          backgroundImage: `url('https://i.imgur.com/placeholder-activate.jpg')`, // You'll need to upload the screenshot
+          backgroundColor: '#f3f4f6', // Fallback while we create the exact replica
+        }}
+      >
+        {/* Recreate the exact Activate interface */}
+        <div className="absolute inset-0 flex flex-col bg-white">
+          {/* Top Header Bar */}
+          <div className="flex h-14 items-center justify-between border-b border-gray-200 bg-white px-6">
+            <div className="flex items-center gap-2">
+              <div className="flex flex-col items-center">
+                <svg className="h-5 w-5 text-gray-800" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                  <path d="M2 17L12 22L22 17" opacity="0.6" />
+                  <path d="M2 12L12 17L22 12" opacity="0.6" />
                 </svg>
-              </span>
+                <span className="text-[10px] font-semibold text-gray-800">Activate</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <button className="rounded-lg p-1.5 hover:bg-gray-100">
+                <svg className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+              </button>
+              <button className="rounded-lg p-1.5 hover:bg-gray-100">
+                <svg className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </button>
+              <button className="rounded-lg p-1.5 hover:bg-gray-100">
+                <svg className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </button>
+              <div className="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-1.5">
+                <span className="text-sm font-medium text-gray-900">axiis</span>
+                <span className="text-sm text-gray-600">Bay Adelaide Centre</span>
+                <svg className="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="flex gap-2">
-        <TabRow tabs={mainTabs} className="border-y border-gray-300" />
-      </div>
+          {/* Main Content with Sidebar */}
+          <div className="flex flex-1 overflow-hidden">
+            {/* Left Sidebar */}
+            <div className="flex w-[72px] flex-col items-center gap-6 border-r border-gray-200 bg-white py-6">
+              <button className="flex flex-col items-center gap-1 text-gray-900">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span className="text-[11px] font-medium">Home</span>
+              </button>
+              <button className="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-900">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <span className="text-[11px]">Building</span>
+              </button>
+              <button className="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-900">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span className="text-[11px]">Retail</span>
+              </button>
+              <button className="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-900">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <span className="text-[11px]">Menu</span>
+              </button>
+            </div>
 
-      <div className="flex w-full flex-1 flex-col overflow-auto bg-gray-100 p-6">
-        <div className="flex min-h-full flex-col gap-4 rounded-lg border border-gray-300 bg-white">
-          <TabRow tabs={proposalTabs} className="border-b border-gray-300" />
-          <div className="flex w-full justify-end gap-2 px-4">
-            <span
-              className={`hover:bg-vts-purple-100 flex cursor-pointer items-center gap-1 rounded-lg border bg-[linear-gradient(110deg,var(--color-vts-ai-light)_0%,var(--color-vts-ai-medium)_10%,var(--color-vts-ai-dark)_50%,var(--color-vts-ai-gray)_200%)] py-1.5 pr-2.5 pl-2 text-sm text-white transition-all duration-200 hover:brightness-120`}
-              onMouseEnter={() => {
-                newProposalRef.current?.setSpeed(0.75);
-                newProposalRef.current?.playSegments(
-                  [
-                    [10, 30],
-                    [10, 30],
-                  ],
-                  true,
-                );
-              }}
-            >
-              <Lottie
-                lottieRef={newProposalRef}
-                animationData={vtsAiSparkleWhite}
-                autoplay={false}
-                loop={false}
-                className="z-50 size-5"
-              />
-              New proposal
-            </span>
-
-            <div className="text-vts-purple-700 hover:bg-vts-purple-100 bg-vts border-vts-purple-300 flex cursor-pointer items-center gap-1 rounded-lg border px-2 py-1.5 text-sm transition-all duration-200">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"
+            {/* Main Content Area */}
+            <div className="flex-1 overflow-auto bg-gray-50">
+              {/* Hero Section with City Background */}
+              <div className="relative h-[320px] w-full overflow-hidden">
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2400&auto=format&fit=crop')`,
+                  }}
                 />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-              </svg>
-              Display options
-            </div>
-          </div>
-
-          <div className="relative flex flex-col gap-2 overflow-auto px-4">
-            <div className="flex gap-2 overflow-auto pr-8 pb-4 text-xs">
-              <div className="flex w-48 shrink-0 flex-col rounded-lg">
-                <div className="min-h-30" />
-                <div className="flex min-h-6.5 items-center gap-2">
-                  <h5 className="text-base font-bold">Overview</h5>
-                  <span className="h-1 w-full bg-gray-200" />
-                </div>
-                <div className="flex flex-col text-right text-gray-700">
-                  <span
-                    className="border-b border-gray-200 px-2 pb-2"
-                    onClick={() => handleVtsAiContentType("upsell", vtsAiPromptsWithContext[0].payload)}
-                  >
-                    Label
-                  </span>
-                  <span className="border-b border-gray-200 px-2 py-2">Date Entered</span>
-                  <span className="border-b border-gray-200 px-2 py-2">Lease Type</span>
-                  <span className="border-b border-gray-200 px-2 py-2">Type</span>
-                  <span className="border-b border-gray-200 px-2 py-2">Space(s)</span>
-                  <span className="border-b border-gray-200 px-2 py-2">Size (sm)</span>
-                  <span className="border-b border-gray-200 px-2 py-2">Downtime (mo)</span>
-                  <span className="border-b border-gray-200 px-2 py-2">Tenant Possession Date</span>
-                  <span className="border-b border-gray-200 px-2 py-2">Tenant Buildout Period (days)</span>
-                  <span className="border-b border-gray-200 px-2 py-2">Tenant Buildout Period (mo)</span>
-                  <span className="border-b border-gray-200 px-2 py-2">LCD</span>
-                  <span className="border-b border-gray-200 px-2 py-2">Lock-In End</span>
-                  <span className="border-b border-gray-200 px-2 py-2">Term (mo)</span>
+                <div className="absolute inset-0 bg-gradient-to-b from-blue-50/30 via-purple-50/30 to-pink-50/30" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <h1 className="text-center text-7xl font-bold tracking-tight">
+                    <span className="text-[#1e3a5f]">ax</span>
+                    <span className="text-[#ef4444]">ii</span>
+                    <span className="text-[#1e3a5f]">s</span>
+                  </h1>
                 </div>
               </div>
 
-              <ProposalCard
-                title="Previous Lease"
-                data={{
-                  label: "TBD",
-                  dateEntered: "Jan 10, 2019",
-                  leaseType: "Gross",
-                  type: "Renewal",
-                  spaces: "Unit 102",
-                  size: "1,750",
-                  downtime: "1",
-                  tenantPossessionDate: "Feb 1, 2020",
-                  tenantBuildoutPeriodDays: "30",
-                  tenantBuildoutPeriodMonths: "1",
-                  lcd: "Feb 1, 2020",
-                  lockInEnd: "Jan 31, 2025",
-                  term: "60",
-                }}
-              />
+              {/* Welcome Banner */}
+              <div className="bg-gradient-to-r from-[#1e3a5f] to-[#2d5a8f] px-8 py-5">
+                <h2 className="text-xl font-semibold text-white">Welcome to Bay Adelaide Centre</h2>
+              </div>
 
-              <ProposalCard
-                title="Budget"
-                actions={[{ text: "Select budget" }]}
-                data={{
-                  label: "TBD",
-                  dateEntered: "Dec 10, 2024",
-                  leaseType: "Gross",
-                  type: "New",
-                  spaces: "Unit 102",
-                  size: "1,800",
-                  downtime: "2",
-                  tenantPossessionDate: "Mar 1, 2025",
-                  tenantBuildoutPeriodDays: "45",
-                  tenantBuildoutPeriodMonths: "1.5",
-                  lcd: "Mar 1, 2025",
-                  lockInEnd: "Feb 28, 2030",
-                  term: "60",
-                }}
-              />
+              {/* Action Cards */}
+              <div className="grid grid-cols-2 gap-6 p-8">
+                <div className="flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-10 shadow-sm transition-all hover:shadow-md">
+                  <div className="mb-3 rounded-full bg-blue-50 p-3">
+                    <svg className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                  </div>
+                  <h3 className="mb-1 text-base font-semibold text-gray-900">Contact</h3>
+                  <p className="text-sm text-gray-600">Our Team</p>
+                </div>
 
-              <ProposalCard
-                title="Tenant"
-                actions={[{ text: "View details" }, { text: "Generate LOI" }]}
-                data={{
-                  label: "Starbucks Coffee",
-                  dateEntered: "Dec 15, 2024",
-                  leaseType: "National",
-                  type: "Coffee Retail",
-                  spaces: "Unit 102",
-                  size: "1,800",
-                  downtime: "2",
-                  tenantPossessionDate: "Mar 1, 2025",
-                  tenantBuildoutPeriodDays: "45",
-                  tenantBuildoutPeriodMonths: "1.5",
-                  lcd: "Mar 1, 2025",
-                  lockInEnd: "Feb 28, 2030",
-                  term: "60",
-                }}
-              />
+                <div className="flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-10 shadow-sm transition-all hover:shadow-md">
+                  <div className="mb-3 rounded-full bg-blue-50 p-3">
+                    <svg className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+                    </svg>
+                  </div>
+                  <h3 className="mb-1 text-base font-semibold text-gray-900">Service</h3>
+                  <p className="text-sm text-gray-600">Requests</p>
+                </div>
+              </div>
 
-              <ProposalCard
-                title="Landlord"
-                actions={[{ text: "View details" }, { text: "Generate LOI" }]}
-                data={{
-                  label: "Downtown Plaza LLC",
-                  dateEntered: "Dec 15, 2024",
-                  leaseType: "Commercial",
-                  type: "Property Owner",
-                  spaces: "Unit 102",
-                  size: "1,800",
-                  downtime: "2",
-                  tenantPossessionDate: "Mar 1, 2025",
-                  tenantBuildoutPeriodDays: "45",
-                  tenantBuildoutPeriodMonths: "1.5",
-                  lcd: "Mar 1, 2025",
-                  lockInEnd: "Feb 28, 2030",
-                  term: "60",
-                }}
-                showMenuIcon={true}
-              />
+              {/* Events Section */}
+              <div className="px-8 pb-8">
+                <div className="mb-5 flex items-center justify-between">
+                  <h2 className="text-xl font-semibold text-gray-900">Happening at Bay Adelaide Centre</h2>
+                  <button className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                    View All
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-4 gap-5">
+                  {/* Hollywood Event */}
+                  <div className="overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-md">
+                    <div className="h-44 bg-gradient-to-br from-orange-400 via-pink-400 to-purple-500" />
+                    <div className="p-3">
+                      <p className="mb-1 text-xs text-gray-500">Wednesday, September 10 at 1:00 PM</p>
+                      <h3 className="text-sm font-semibold text-gray-900">Hollywood in Toronto</h3>
+                    </div>
+                  </div>
+
+                  {/* Summer Sounds */}
+                  <div className="overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-md">
+                    <div className="h-44 bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200" />
+                    <div className="p-3">
+                      <p className="mb-1 text-xs text-gray-500">Thursdays at 12:00 PM</p>
+                      <h3 className="text-sm font-semibold text-gray-900">Summer Sounds</h3>
+                    </div>
+                  </div>
+
+                  {/* Almonds Article */}
+                  <div className="overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-md">
+                    <div
+                      className="h-44 bg-cover bg-center"
+                      style={{
+                        backgroundImage: `url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=800&auto=format&fit=crop')`,
+                      }}
+                    />
+                    <div className="p-3">
+                      <h3 className="text-sm font-semibold text-gray-900">Almonds aren't the only culprit</h3>
+                    </div>
+                  </div>
+
+                  {/* Wellness Sessions */}
+                  <div className="overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-md">
+                    <div
+                      className="h-44 bg-cover bg-center"
+                      style={{
+                        backgroundImage: `url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop')`,
+                      }}
+                    />
+                    <div className="p-3">
+                      <p className="mb-1 text-xs text-gray-500">September 2025</p>
+                      <h3 className="text-sm font-semibold text-gray-900">Weekly Wellness Sessions</h3>
+                    </div>
+                  </div>
+
+                  {/* Catering Card - Spans 2 columns */}
+                  <div className="col-span-2 overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-md">
+                    <div className="flex h-full">
+                      <div
+                        className="w-1/2 bg-cover bg-center"
+                        style={{
+                          backgroundImage: `url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop')`,
+                        }}
+                      />
+                      <div className="flex w-1/2 flex-col justify-center p-6">
+                        <h3 className="mb-1 text-lg font-semibold text-gray-900">Catering made simple</h3>
+                        <p className="text-sm text-gray-600">Food ordering services</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

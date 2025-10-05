@@ -1,6 +1,12 @@
 import { useAppContext, VtsAiPersona } from "../../../context/AppContext";
 
-export default function VtsAiHeader({ onReset }: { onReset?: () => void }) {
+export default function VtsAiHeader({
+  onReset,
+  showPersonaToggle = true,
+}: {
+  onReset?: () => void;
+  showPersonaToggle?: boolean;
+}) {
   const { setVtsAiContentType, vtsAiPersona, setVtsAiPersona } = useAppContext();
 
   const handleResetVtsAi = () => {
@@ -28,25 +34,27 @@ export default function VtsAiHeader({ onReset }: { onReset?: () => void }) {
         <h5 className="text-sm font-bold">VTS AI</h5>
       </div>
 
-      <div className="relative flex flex-auto justify-center rounded-full border-2 border-white/25 bg-black/25 p-1 text-white">
-        <div
-          className="absolute top-1 left-1 h-[calc(100%-0.5rem)] w-[calc(50%-0.25rem)] rounded-full bg-white/80 transition-transform duration-200 ease-in-out"
-          style={{
-            transform: `translateX(${personas.indexOf(vtsAiPersona) * 100}%)`,
-          }}
-        />
-        {personas.map((persona) => (
-          <button
-            key={persona}
-            onClick={() => setVtsAiPersona(persona)}
-            className={`relative w-1/2 rounded-full px-1 py-1 text-sm font-medium duration-200 ${
-              vtsAiPersona === persona ? "text-vts-purple-700" : "cursor-pointer text-white/50 hover:text-white"
-            }`}
-          >
-            {persona}
-          </button>
-        ))}
-      </div>
+      {showPersonaToggle && (
+        <div className="relative flex flex-auto justify-center rounded-full border-2 border-white/25 bg-black/25 p-1 text-white">
+          <div
+            className="absolute top-1 left-1 h-[calc(100%-0.5rem)] w-[calc(50%-0.25rem)] rounded-full bg-white/80 transition-transform duration-200 ease-in-out"
+            style={{
+              transform: `translateX(${personas.indexOf(vtsAiPersona) * 100}%)`,
+            }}
+          />
+          {personas.map((persona) => (
+            <button
+              key={persona}
+              onClick={() => setVtsAiPersona(persona)}
+              className={`relative w-1/2 rounded-full px-1 py-1 text-sm font-medium duration-200 ${
+                vtsAiPersona === persona ? "text-vts-purple-700" : "cursor-pointer text-white/50 hover:text-white"
+              }`}
+            >
+              {persona}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="flex flex-auto justify-end gap-2">
         <span

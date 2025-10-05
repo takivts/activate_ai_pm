@@ -38,13 +38,25 @@ export default function VtsLeaseLayout({
     inventoryNavItems,
   ];
 
+  const isActivatePage = pathname?.includes("/vts/lease/deals/profile");
+
+  // For Activate page, only show the content and AI modal
+  if (isActivatePage) {
+    return (
+      <div className="flex flex-col">
+        {children}
+        <VtsAiFloatingCTA />
+        {isVtsAiOpen && <div className="fixed top-0 left-0 h-full w-full bg-black/0" onClick={closeVtsAiFromOverlay} />}
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col">
       <GlobalHeader />
       <div className="mx-auto flex min-h-[calc(100dvh-50px)] w-full">
         <LeftNav navItems={leaseNavItems} />
         {children}
-        {pathname?.includes("vts/lease/deals/profile") && <SidePanel />}
         <VtsAiFloatingCTA />
         <SupportFloatingCTA />
       </div>
