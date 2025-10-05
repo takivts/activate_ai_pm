@@ -167,7 +167,7 @@ export default function ActivatePage() {
                       }}
                     />
                     <div className="p-3">
-                      <h3 className="text-sm font-semibold text-gray-900">Almonds aren't the only culprit</h3>
+                      <h3 className="text-sm font-semibold text-gray-900">Almonds aren&apos;t the only culprit</h3>
                     </div>
                   </div>
 

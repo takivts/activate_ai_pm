@@ -1,7 +1,6 @@
 "use client";
 
 import GlobalHeader from "../_shared/global-header";
-import SidePanel from "../_shared/side-panel";
 import { LeftNav } from "../_shared/left-nav";
 import { inventoryNavItems } from "../_shared/data/navigation";
 import { useAppContext } from "@/app/context/AppContext";
