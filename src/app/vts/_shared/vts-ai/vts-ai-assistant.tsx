@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import VtsAiHeader from "./_vts-ai-header";
 
@@ -30,6 +30,11 @@ interface FlowState {
   deliveryTime?: string;
 }
 
+interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
 interface VtsAiAssistantProps {
   className?: string;
   isOpen: boolean;
@@ -39,6 +44,11 @@ export default function VtsAiAssistant({ className, isOpen }: VtsAiAssistantProp
   const [currentFlow, setCurrentFlow] = useState<FlowType>(null);
   const [flowState, setFlowState] = useState<FlowState>({});
   const [step, setStep] = useState(0);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [chatInput, setChatInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const chatEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -61,10 +71,63 @@ export default function VtsAiAssistant({ className, isOpen }: VtsAiAssistantProp
     },
   };
 
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatMessages]);
+
   const resetConversation = () => {
     setCurrentFlow(null);
     setFlowState({});
     setStep(0);
+    setChatMessages([]);
+  };
+
+  const sendChatMessage = async () => {
+    if (!chatInput.trim() || isLoading) return;
+
+    const userMessage = chatInput.trim();
+    setChatInput("");
+    setIsLoading(true);
+
+    // Add user message
+    setChatMessages((prev) => [...prev, { role: "user", content: userMessage }]);
+
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyAvHeDTReKaVUPZMxdCZ6LeCw7Su88tsBI`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    text: `You are a helpful property management AI assistant for VTS Activate. Help users with property management questions, building amenities, visitor management, room bookings, and general inquiries. Keep responses concise and helpful.\n\nUser question: ${userMessage}`,
+                  },
+                ],
+              },
+            ],
+          }),
+        },
+      );
+
+      const data = await response.json();
+      const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm sorry, I couldn't process that request.";
+
+      // Add AI response
+      setChatMessages((prev) => [...prev, { role: "assistant", content: aiResponse }]);
+    } catch (error) {
+      console.error("Error calling Gemini API:", error);
+      setChatMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: "I'm sorry, I encountered an error. Please try again." },
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const startFlow = (flow: FlowType) => {
@@ -700,8 +763,77 @@ export default function VtsAiAssistant({ className, isOpen }: VtsAiAssistantProp
           className={`layered-shadow animate-ai-linear-gradient z-50 flex h-180 w-lg flex-col rounded-4xl bg-[linear-gradient(110deg,var(--color-vts-ai-light)_0%,var(--color-vts-ai-medium)_10%,var(--color-vts-ai-dark)_50%,var(--color-vts-ai-gray)_100%)] bg-[length:200%_200%] p-4 text-gray-700 ${className}`}
         >
           <VtsAiHeader onReset={resetConversation} showPersonaToggle={false} />
-          <div className="relative z-50 h-[calc(100%-56px)] w-full overflow-auto rounded-[1.25rem] bg-white text-sm">
-            <div className="flex h-full flex-col overflow-auto p-4">{renderFlow()}</div>
+          <div className="relative z-50 flex h-[calc(100%-56px)] w-full flex-col rounded-[1.25rem] bg-white text-sm">
+            <div className="flex flex-1 flex-col overflow-auto p-4">
+              {renderFlow()}
+              
+              {/* Chat Messages */}
+              {chatMessages.length > 0 && (
+                <div className="mt-4 flex flex-col gap-2 border-t border-gray-200 pt-4">
+                  {chatMessages.map((msg, idx) => (
+                    <div
+                      key={idx}
+                      className={`max-w-4/5 rounded-2xl px-4 py-3 ${
+                        msg.role === "user"
+                          ? "bg-vts-gray-200 self-end border border-gray-200"
+                          : "bg-vts-purple-50 self-start"
+                      }`}
+                    >
+                      {msg.content}
+                    </div>
+                  ))}
+                  {isLoading && (
+                    <div className="bg-vts-purple-50 max-w-4/5 self-start rounded-2xl px-4 py-3">
+                      <div className="flex gap-1">
+                        <div className="h-2 w-2 animate-bounce rounded-full bg-purple-400" />
+                        <div className="h-2 w-2 animate-bounce rounded-full bg-purple-400" style={{ animationDelay: "0.1s" }} />
+                        <div className="h-2 w-2 animate-bounce rounded-full bg-purple-400" style={{ animationDelay: "0.2s" }} />
+                      </div>
+                    </div>
+                  )}
+                  <div ref={chatEndRef} />
+                </div>
+              )}
+            </div>
+            
+            {/* Chat Input Bar */}
+            <div className="flex items-center gap-2 border-t border-gray-200 p-4">
+              <input
+                ref={inputRef}
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    sendChatMessage();
+                  }
+                }}
+                placeholder="Ask me anything about property management..."
+                className="flex-1 rounded-lg border border-gray-300 px-4 py-2 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-200"
+                disabled={isLoading}
+              />
+              <button
+                onClick={sendChatMessage}
+                disabled={isLoading || !chatInput.trim()}
+                className="rounded-lg bg-[linear-gradient(110deg,var(--color-vts-ai-light)_0%,var(--color-vts-ai-medium)_10%,var(--color-vts-ai-dark)_50%,var(--color-vts-ai-gray)_200%)] p-2 text-white transition-all duration-200 hover:brightness-120 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="h-6 w-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </motion.div>
       )}
