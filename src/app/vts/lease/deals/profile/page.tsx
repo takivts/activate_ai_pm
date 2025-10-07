@@ -93,12 +93,15 @@ export default function ActivatePage() {
               }}
             >
               {/* Otto Hero Section */}
-              <div
-                className="relative flex h-80 items-center justify-center bg-cover bg-center"
-                style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop')`,
-                }}
-              >
+              <div className="relative flex h-80 items-center justify-center overflow-hidden">
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop')`,
+                    filter: 'blur(8px)',
+                    transform: 'scale(1.1)',
+                  }}
+                />
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-300 via-yellow-400 to-orange-300 opacity-90 mix-blend-multiply" />
                 <div className="relative z-10 text-center">
                   <h1 className="mb-2 text-6xl font-bold text-white">Otto</h1>
@@ -136,12 +139,15 @@ export default function ActivatePage() {
               </div>
 
               {/* Happening Section */}
-              <div
-                className="relative py-16 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2000&auto=format&fit=crop')`,
-                }}
-              >
+              <div className="relative py-16 overflow-hidden">
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2000&auto=format&fit=crop')`,
+                    filter: 'blur(8px)',
+                    transform: 'scale(1.1)',
+                  }}
+                />
                 <div className="absolute inset-0 bg-blue-500 opacity-85 mix-blend-multiply" />
                 <div className="relative z-10 px-6">
                   <div className="flex items-center justify-between mb-8">
