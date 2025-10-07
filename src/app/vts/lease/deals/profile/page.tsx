@@ -94,14 +94,12 @@ export default function ActivatePage() {
             >
               {/* Otto Hero Section */}
               <div
-                className="relative flex h-80 items-center justify-center bg-repeat"
+                className="relative flex h-80 items-center justify-center bg-cover bg-center"
                 style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1589178678640-fefe7f8a62e0?q=80&w=2000&auto=format&fit=crop')`,
-                  backgroundSize: '400px 400px',
-                  backgroundColor: '#c9b8a0',
+                  backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop')`,
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-amber-200 via-yellow-300 to-orange-200 opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-300 via-yellow-400 to-orange-300 opacity-75 mix-blend-multiply" />
                 <div className="relative z-10 text-center">
                   <h1 className="mb-2 text-6xl font-bold text-white">Otto</h1>
                   <p className="mb-8 text-xl text-white">by Oxford</p>
@@ -139,14 +137,12 @@ export default function ActivatePage() {
 
               {/* Happening Section */}
               <div
-                className="relative py-16 bg-repeat"
+                className="relative py-16 bg-cover bg-center"
                 style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1589178678640-fefe7f8a62e0?q=80&w=2000&auto=format&fit=crop')`,
-                  backgroundSize: '400px 400px',
-                  backgroundColor: '#c9b8a0',
+                  backgroundImage: `url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2000&auto=format&fit=crop')`,
                 }}
               >
-                <div className="absolute inset-0 bg-blue-600 opacity-60" />
+                <div className="absolute inset-0 bg-blue-500 opacity-70 mix-blend-multiply" />
                 <div className="relative z-10 px-6">
                   <div className="flex items-center justify-between mb-8">
                     <h2 className="text-3xl font-bold text-white">Happening at Richmond-Adelaide Centre</h2>
