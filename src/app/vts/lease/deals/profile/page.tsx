@@ -159,7 +159,7 @@ export default function ActivatePage() {
                       <div
                         className="h-48 bg-cover bg-center"
                         style={{
-                          backgroundImage: `url('https://images.unsplash.com/photo-1598899134763-ff20a6689349?q=80&w=800&auto=format&fit=crop')`,
+                          backgroundImage: `url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop')`,
                         }}
                       />
                       <div className="p-4">
@@ -173,7 +173,7 @@ export default function ActivatePage() {
                       <div
                         className="h-48 bg-cover bg-center"
                         style={{
-                          backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=800&auto=format&fit=crop')`,
+                          backgroundImage: `url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop')`,
                         }}
                       />
                       <div className="p-4">
