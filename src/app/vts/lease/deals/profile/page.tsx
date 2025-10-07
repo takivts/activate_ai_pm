@@ -207,8 +207,8 @@ export default function ActivatePage() {
                         }}
                       />
                       <div className="p-4">
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">What's Happening at Chefs Hall</h3>
-                        <p className="text-sm text-gray-600">Discover events & promotions happening at Richmond-Adelaide Centre's social...</p>
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">What&apos;s Happening at Chefs Hall</h3>
+                        <p className="text-sm text-gray-600">Discover events & promotions happening at Richmond-Adelaide Centre&apos;s social...</p>
                       </div>
                     </div>
                   </div>
