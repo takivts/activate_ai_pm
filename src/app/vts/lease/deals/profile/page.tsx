@@ -3,12 +3,13 @@
 export default function ActivatePage() {
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      {/* Use the exact screenshot as background */}
+      {/* Rope texture background */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-repeat"
           style={{
-            backgroundImage: `url('https://i.imgur.com/xZXobdK.png')`,
-            backgroundColor: '#f3f4f6', // Fallback
+            backgroundImage: `url('https://images.unsplash.com/photo-1589178678640-fefe7f8a62e0?q=80&w=2000&auto=format&fit=crop')`,
+            backgroundSize: '400px 400px',
+            backgroundColor: '#c9b8a0',
           }}
         >
         {/* Recreate the exact Activate interface */}
@@ -83,15 +84,24 @@ export default function ActivatePage() {
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-1 overflow-auto bg-gray-50">
+            <div
+              className="flex-1 overflow-auto bg-repeat"
+              style={{
+                backgroundImage: `url('https://images.unsplash.com/photo-1589178678640-fefe7f8a62e0?q=80&w=2000&auto=format&fit=crop')`,
+                backgroundSize: '400px 400px',
+                backgroundColor: '#c9b8a0',
+              }}
+            >
               {/* Otto Hero Section */}
               <div
-                className="relative flex h-80 items-center justify-center bg-cover bg-center"
+                className="relative flex h-80 items-center justify-center bg-repeat"
                 style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+                  backgroundImage: `url('https://images.unsplash.com/photo-1589178678640-fefe7f8a62e0?q=80&w=2000&auto=format&fit=crop')`,
+                  backgroundSize: '400px 400px',
+                  backgroundColor: '#c9b8a0',
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-amber-200 via-yellow-300 to-orange-200 opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-200 via-yellow-300 to-orange-200 opacity-60" />
                 <div className="relative z-10 text-center">
                   <h1 className="mb-2 text-6xl font-bold text-white">Otto</h1>
                   <p className="mb-8 text-xl text-white">by Oxford</p>
@@ -129,12 +139,14 @@ export default function ActivatePage() {
 
               {/* Happening Section */}
               <div
-                className="relative py-16"
+                className="relative py-16 bg-repeat"
                 style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+                  backgroundImage: `url('https://images.unsplash.com/photo-1589178678640-fefe7f8a62e0?q=80&w=2000&auto=format&fit=crop')`,
+                  backgroundSize: '400px 400px',
+                  backgroundColor: '#c9b8a0',
                 }}
               >
-                <div className="absolute inset-0 bg-blue-600 opacity-70" />
+                <div className="absolute inset-0 bg-blue-600 opacity-60" />
                 <div className="relative z-10 px-6">
                   <div className="flex items-center justify-between mb-8">
                     <h2 className="text-3xl font-bold text-white">Happening at Richmond-Adelaide Centre</h2>
@@ -219,12 +231,14 @@ export default function ActivatePage() {
               <div className="px-6 py-8">
                 {/* Amenities */}
                 <div
-                  className="mb-4 rounded-lg bg-blue-900 p-6 text-white transition-all hover:bg-blue-800"
+                  className="mb-4 rounded-lg relative bg-blue-900 p-6 text-white transition-all hover:bg-blue-800 overflow-hidden"
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=800&auto=format&fit=crop')`,
+                    backgroundImage: `url('https://images.unsplash.com/photo-1589178678640-fefe7f8a62e0?q=80&w=2000&auto=format&fit=crop')`,
+                    backgroundSize: '200px 200px',
+                    backgroundRepeat: 'repeat',
                   }}
                 >
-                  <div className="absolute inset-0 bg-blue-900 opacity-80 rounded-lg" />
+                  <div className="absolute inset-0 bg-blue-900 opacity-60 rounded-lg" />
                   <div className="relative z-10">
                     <h3 className="text-2xl font-bold">Amenities</h3>
                   </div>
@@ -232,12 +246,14 @@ export default function ActivatePage() {
                 
                 {/* Events */}
                 <div
-                  className="mb-4 rounded-lg bg-blue-900 p-6 text-white transition-all hover:bg-blue-800"
+                  className="mb-4 rounded-lg relative bg-blue-900 p-6 text-white transition-all hover:bg-blue-800 overflow-hidden"
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=800&auto=format&fit=crop')`,
+                    backgroundImage: `url('https://images.unsplash.com/photo-1589178678640-fefe7f8a62e0?q=80&w=2000&auto=format&fit=crop')`,
+                    backgroundSize: '200px 200px',
+                    backgroundRepeat: 'repeat',
                   }}
                 >
-                  <div className="absolute inset-0 bg-blue-900 opacity-80 rounded-lg" />
+                  <div className="absolute inset-0 bg-blue-900 opacity-60 rounded-lg" />
                   <div className="relative z-10">
                     <h3 className="text-2xl font-bold">Events</h3>
                   </div>
@@ -245,12 +261,14 @@ export default function ActivatePage() {
                 
                 {/* Retail & Promotions */}
                 <div
-                  className="mb-4 rounded-lg bg-blue-900 p-6 text-white transition-all hover:bg-blue-800"
+                  className="mb-4 rounded-lg relative bg-blue-900 p-6 text-white transition-all hover:bg-blue-800 overflow-hidden"
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=800&auto=format&fit=crop')`,
+                    backgroundImage: `url('https://images.unsplash.com/photo-1589178678640-fefe7f8a62e0?q=80&w=2000&auto=format&fit=crop')`,
+                    backgroundSize: '200px 200px',
+                    backgroundRepeat: 'repeat',
                   }}
                 >
-                  <div className="absolute inset-0 bg-blue-900 opacity-80 rounded-lg" />
+                  <div className="absolute inset-0 bg-blue-900 opacity-60 rounded-lg" />
                   <div className="relative z-10">
                     <h3 className="text-2xl font-bold">Retail & Promotions</h3>
                   </div>
@@ -258,20 +276,32 @@ export default function ActivatePage() {
                 
                 {/* Fitness & Wellness */}
                 <div
-                  className="mb-4 rounded-lg bg-blue-900 p-6 text-white transition-all hover:bg-blue-800"
+                  className="mb-4 rounded-lg relative bg-blue-900 p-6 text-white transition-all hover:bg-blue-800 overflow-hidden"
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=800&auto=format&fit=crop')`,
+                    backgroundImage: `url('https://images.unsplash.com/photo-1589178678640-fefe7f8a62e0?q=80&w=2000&auto=format&fit=crop')`,
+                    backgroundSize: '200px 200px',
+                    backgroundRepeat: 'repeat',
                   }}
                 >
-                  <div className="absolute inset-0 bg-blue-900 opacity-80 rounded-lg" />
+                  <div className="absolute inset-0 bg-blue-900 opacity-60 rounded-lg" />
                   <div className="relative z-10">
                     <h3 className="text-2xl font-bold">Fitness & Wellness</h3>
                   </div>
                 </div>
                 
                 {/* Building Notices */}
-                <div className="mb-4 rounded-lg bg-blue-700 p-6 text-white transition-all hover:bg-blue-600">
-                  <h3 className="text-2xl font-bold">Building Notices</h3>
+                <div
+                  className="mb-4 rounded-lg relative bg-blue-700 p-6 text-white transition-all hover:bg-blue-600 overflow-hidden"
+                  style={{
+                    backgroundImage: `url('https://images.unsplash.com/photo-1589178678640-fefe7f8a62e0?q=80&w=2000&auto=format&fit=crop')`,
+                    backgroundSize: '200px 200px',
+                    backgroundRepeat: 'repeat',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-blue-700 opacity-70 rounded-lg" />
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold">Building Notices</h3>
+                  </div>
                 </div>
               </div>
 
