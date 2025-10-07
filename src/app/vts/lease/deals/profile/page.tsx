@@ -7,7 +7,7 @@ export default function ActivatePage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://i.imgur.com/F1nblWi.jpg')`,
+            backgroundImage: `url('https://i.imgur.com/xZXobdK.png')`,
             backgroundColor: '#f3f4f6', // Fallback
           }}
         >
