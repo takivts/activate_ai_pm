@@ -99,11 +99,11 @@ export default function ActivatePage() {
                   backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop')`,
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-amber-300 via-yellow-400 to-orange-300 opacity-75 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-300 via-yellow-400 to-orange-300 opacity-90 mix-blend-multiply" />
                 <div className="relative z-10 text-center">
                   <h1 className="mb-2 text-6xl font-bold text-white">Otto</h1>
                   <p className="mb-8 text-xl text-white">by Oxford</p>
-                  <h2 className="mb-8 text-2xl font-semibold text-gray-800">Welcome to Richmond-Adelaide Centre</h2>
+                  <h2 className="mb-8 text-2xl font-semibold text-white">Welcome to Richmond-Adelaide Centre</h2>
                   
                   {/* Action Buttons */}
                   <div className="flex gap-4 justify-center">
@@ -142,7 +142,7 @@ export default function ActivatePage() {
                   backgroundImage: `url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2000&auto=format&fit=crop')`,
                 }}
               >
-                <div className="absolute inset-0 bg-blue-500 opacity-70 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-blue-500 opacity-85 mix-blend-multiply" />
                 <div className="relative z-10 px-6">
                   <div className="flex items-center justify-between mb-8">
                     <h2 className="text-3xl font-bold text-white">Happening at Richmond-Adelaide Centre</h2>
