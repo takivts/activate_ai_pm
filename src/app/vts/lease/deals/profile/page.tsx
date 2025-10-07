@@ -84,122 +84,216 @@ export default function ActivatePage() {
 
             {/* Main Content Area */}
             <div className="flex-1 overflow-auto bg-gray-50">
-              {/* Hero Section with City Background */}
-              <div className="relative h-[320px] w-full overflow-hidden">
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2400&auto=format&fit=crop')`,
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-blue-50/30 via-purple-50/30 to-pink-50/30" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <h1 className="text-center text-7xl font-bold tracking-tight">
-                    <span className="text-[#1e3a5f]">ax</span>
-                    <span className="text-[#ef4444]">ii</span>
-                    <span className="text-[#1e3a5f]">s</span>
-                  </h1>
+              {/* Otto Hero Section */}
+              <div
+                className="relative flex h-80 items-center justify-center bg-cover bg-center"
+                style={{
+                  backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-200 via-yellow-300 to-orange-200 opacity-80" />
+                <div className="relative z-10 text-center">
+                  <h1 className="mb-2 text-6xl font-bold text-white">Otto</h1>
+                  <p className="mb-8 text-xl text-white">by Oxford</p>
+                  <h2 className="mb-8 text-2xl font-semibold text-gray-800">Welcome to Richmond-Adelaide Centre</h2>
+                  
+                  {/* Action Buttons */}
+                  <div className="flex gap-4 justify-center">
+                    <button className="flex items-center gap-2 rounded-lg bg-blue-900 px-6 py-3 text-white transition-all hover:bg-blue-800">
+                      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      Welcome to Otto
+                    </button>
+                    <button className="flex items-center gap-2 rounded-lg bg-blue-900 px-6 py-3 text-white transition-all hover:bg-blue-800">
+                      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
+                      </svg>
+                      Order Food
+                    </button>
+                    <button className="flex items-center gap-2 rounded-lg bg-blue-900 px-6 py-3 text-white transition-all hover:bg-blue-800">
+                      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                      </svg>
+                      Key Services
+                    </button>
+                    <button className="flex items-center gap-2 rounded-lg bg-blue-900 px-6 py-3 text-white transition-all hover:bg-blue-800">
+                      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                      Search
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              {/* Welcome Banner */}
-              <div className="bg-gradient-to-r from-[#1e3a5f] to-[#2d5a8f] px-8 py-5">
-                <h2 className="text-xl font-semibold text-white">Welcome to Bay Adelaide Centre</h2>
-              </div>
-
-              {/* Action Cards */}
-              <div className="grid grid-cols-2 gap-6 p-8">
-                <div className="flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-10 shadow-sm transition-all hover:shadow-md">
-                  <div className="mb-3 rounded-full bg-blue-50 p-3">
-                    <svg className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
+              {/* Happening Section */}
+              <div
+                className="relative py-16"
+                style={{
+                  backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+                }}
+              >
+                <div className="absolute inset-0 bg-blue-600 opacity-70" />
+                <div className="relative z-10 px-6">
+                  <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-3xl font-bold text-white">Happening at Richmond-Adelaide Centre</h2>
+                    <button className="text-white hover:underline">View All</button>
                   </div>
-                  <h3 className="mb-1 text-base font-semibold text-gray-900">Contact</h3>
-                  <p className="text-sm text-gray-600">Our Team</p>
-                </div>
-
-                <div className="flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-10 shadow-sm transition-all hover:shadow-md">
-                  <div className="mb-3 rounded-full bg-blue-50 p-3">
-                    <svg className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
-                    </svg>
-                  </div>
-                  <h3 className="mb-1 text-base font-semibold text-gray-900">Service</h3>
-                  <p className="text-sm text-gray-600">Requests</p>
-                </div>
-              </div>
-
-              {/* Events Section */}
-              <div className="px-8 pb-8">
-                <div className="mb-5 flex items-center justify-between">
-                  <h2 className="text-xl font-semibold text-gray-900">Happening at Bay Adelaide Centre</h2>
-                  <button className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                    View All
-                  </button>
-                </div>
-
-                <div className="grid grid-cols-4 gap-5">
-                  {/* Hollywood Event */}
-                  <div className="overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-md">
-                    <div className="h-44 bg-gradient-to-br from-orange-400 via-pink-400 to-purple-500" />
-                    <div className="p-3">
-                      <p className="mb-1 text-xs text-gray-500">Wednesday, September 10 at 1:00 PM</p>
-                      <h3 className="text-sm font-semibold text-gray-900">Hollywood in Toronto</h3>
-                    </div>
-                  </div>
-
-                  {/* Summer Sounds */}
-                  <div className="overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-md">
-                    <div className="h-44 bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200" />
-                    <div className="p-3">
-                      <p className="mb-1 text-xs text-gray-500">Thursdays at 12:00 PM</p>
-                      <h3 className="text-sm font-semibold text-gray-900">Summer Sounds</h3>
-                    </div>
-                  </div>
-
-                  {/* Almonds Article */}
-                  <div className="overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-md">
-                    <div
-                      className="h-44 bg-cover bg-center"
-                      style={{
-                        backgroundImage: `url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=800&auto=format&fit=crop')`,
-                      }}
-                    />
-                    <div className="p-3">
-                      <h3 className="text-sm font-semibold text-gray-900">Almonds aren&apos;t the only culprit</h3>
-                    </div>
-                  </div>
-
-                  {/* Wellness Sessions */}
-                  <div className="overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-md">
-                    <div
-                      className="h-44 bg-cover bg-center"
-                      style={{
-                        backgroundImage: `url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop')`,
-                      }}
-                    />
-                    <div className="p-3">
-                      <p className="mb-1 text-xs text-gray-500">September 2025</p>
-                      <h3 className="text-sm font-semibold text-gray-900">Weekly Wellness Sessions</h3>
-                    </div>
-                  </div>
-
-                  {/* Catering Card - Spans 2 columns */}
-                  <div className="col-span-2 overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-md">
-                    <div className="flex h-full">
+                  
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">
+                    {/* Event Card 1 */}
+                    <div className="overflow-hidden rounded-xl bg-white shadow-lg transition-all hover:shadow-xl">
                       <div
-                        className="w-1/2 bg-cover bg-center"
+                        className="h-48 bg-cover bg-center"
                         style={{
-                          backgroundImage: `url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop')`,
+                          backgroundImage: `url('https://images.unsplash.com/photo-1598899134763-ff20a6689349?q=80&w=800&auto=format&fit=crop')`,
                         }}
                       />
-                      <div className="flex w-1/2 flex-col justify-center p-6">
-                        <h3 className="mb-1 text-lg font-semibold text-gray-900">Catering made simple</h3>
-                        <p className="text-sm text-gray-600">Food ordering services</p>
+                      <div className="p-4">
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">NOW OPEN: Everyside Social Eatery & Taphouse</h3>
+                        <p className="text-sm text-gray-600">Your new local eatery is here! Tap to view features, happy hour, and reserve your...</p>
+                      </div>
+                    </div>
+                    
+                    {/* Event Card 2 */}
+                    <div className="overflow-hidden rounded-xl bg-white shadow-lg transition-all hover:shadow-xl">
+                      <div
+                        className="h-48 bg-cover bg-center"
+                        style={{
+                          backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=800&auto=format&fit=crop')`,
+                        }}
+                      />
+                      <div className="p-4">
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">Live Music Moments Presented by Oxford</h3>
+                        <p className="text-sm text-gray-600">Enjoy live music at Richmond-Adelaide Centre.</p>
+                      </div>
+                    </div>
+                    
+                    {/* Event Card 3 */}
+                    <div className="overflow-hidden rounded-xl bg-white shadow-lg transition-all hover:shadow-xl">
+                      <div
+                        className="h-48 bg-cover bg-center"
+                        style={{
+                          backgroundImage: `url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=800&auto=format&fit=crop')`,
+                        }}
+                      />
+                      <div className="p-4">
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">Coming Soon: Columbus Café & Co</h3>
+                        <p className="text-sm text-gray-600">The café next door will be opening soon in the 130 Adelaide W lobby. Tap to lear...</p>
+                      </div>
+                    </div>
+                    
+                    {/* Event Card 4 */}
+                    <div className="overflow-hidden rounded-xl bg-white shadow-lg transition-all hover:shadow-xl">
+                      <div
+                        className="h-48 bg-cover bg-center"
+                        style={{
+                          backgroundImage: `url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop')`,
+                        }}
+                      />
+                      <div className="p-4">
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">Booster Juice Charcoal Menu</h3>
+                        <p className="text-sm text-gray-600">Experience the NEW charcoal menu at Booster Juice, available for a limited tim...</p>
+                      </div>
+                    </div>
+                    
+                    {/* Event Card 5 */}
+                    <div className="overflow-hidden rounded-xl bg-white shadow-lg transition-all hover:shadow-xl">
+                      <div
+                        className="h-48 bg-cover bg-center"
+                        style={{
+                          backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=800&auto=format&fit=crop')`,
+                        }}
+                      />
+                      <div className="p-4">
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">What's Happening at Chefs Hall</h3>
+                        <p className="text-sm text-gray-600">Discover events & promotions happening at Richmond-Adelaide Centre's social...</p>
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Collapsible Sections */}
+              <div className="px-6 py-8">
+                {/* Amenities */}
+                <div
+                  className="mb-4 rounded-lg bg-blue-900 p-6 text-white transition-all hover:bg-blue-800"
+                  style={{
+                    backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=800&auto=format&fit=crop')`,
+                  }}
+                >
+                  <div className="absolute inset-0 bg-blue-900 opacity-80 rounded-lg" />
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold">Amenities</h3>
+                  </div>
+                </div>
+                
+                {/* Events */}
+                <div
+                  className="mb-4 rounded-lg bg-blue-900 p-6 text-white transition-all hover:bg-blue-800"
+                  style={{
+                    backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=800&auto=format&fit=crop')`,
+                  }}
+                >
+                  <div className="absolute inset-0 bg-blue-900 opacity-80 rounded-lg" />
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold">Events</h3>
+                  </div>
+                </div>
+                
+                {/* Retail & Promotions */}
+                <div
+                  className="mb-4 rounded-lg bg-blue-900 p-6 text-white transition-all hover:bg-blue-800"
+                  style={{
+                    backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=800&auto=format&fit=crop')`,
+                  }}
+                >
+                  <div className="absolute inset-0 bg-blue-900 opacity-80 rounded-lg" />
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold">Retail & Promotions</h3>
+                  </div>
+                </div>
+                
+                {/* Fitness & Wellness */}
+                <div
+                  className="mb-4 rounded-lg bg-blue-900 p-6 text-white transition-all hover:bg-blue-800"
+                  style={{
+                    backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=800&auto=format&fit=crop')`,
+                  }}
+                >
+                  <div className="absolute inset-0 bg-blue-900 opacity-80 rounded-lg" />
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold">Fitness & Wellness</h3>
+                  </div>
+                </div>
+                
+                {/* Building Notices */}
+                <div className="mb-4 rounded-lg bg-blue-700 p-6 text-white transition-all hover:bg-blue-600">
+                  <h3 className="text-2xl font-bold">Building Notices</h3>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="bg-gray-800 px-6 py-8 text-center text-white">
+                <h3 className="mb-4 text-xl font-bold">Connect With Us</h3>
+                <div className="flex justify-center gap-4">
+                  <button className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-700 text-white transition-all hover:bg-gray-600">
+                    <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                    </svg>
+                  </button>
+                  <button className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-700 text-white transition-all hover:bg-gray-600">
+                    <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </button>
+                  <button className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-700 text-white transition-all hover:bg-gray-600">
+                    <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
