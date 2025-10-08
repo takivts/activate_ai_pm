@@ -9,6 +9,7 @@ export default function GlobalHeader() {
   const isInsights = url?.includes("/vts/insights");
   const isMarket = url?.includes("/vts/market");
   const isLease = url?.includes("/vts/lease");
+  const isActivate = url?.includes("/vts/activate");
 
   const handleLogout = () => {
     // Logout functionality disabled
@@ -40,7 +41,7 @@ export default function GlobalHeader() {
       </span>
       <span className="mx-3 border-r border-white/50 py-3" />
       <span
-        className={`flex h-full items-center border-t-6 border-transparent px-3 text-xs font-bold text-white uppercase ${
+        className={`flex h-full items-center border-t-6 border-transparent px-3 text-xs font-extrabold tracking-[0.05em] text-white uppercase ${
           isMarket ? "border-vts-primary bg-white/10" : ""
         }`}
       >
@@ -49,7 +50,7 @@ export default function GlobalHeader() {
         </Link>
       </span>
       <span
-        className={`flex h-full items-center border-t-6 border-transparent px-3 text-xs font-bold text-white uppercase ${
+        className={`flex h-full items-center border-t-6 border-transparent px-3 text-xs font-extrabold tracking-[0.05em] text-white uppercase ${
           isLease ? "border-vts-primary bg-white/10" : ""
         }`}
       >
@@ -58,7 +59,7 @@ export default function GlobalHeader() {
         </Link>
       </span>
       <span
-        className={`flex h-full items-center border-t-6 border-transparent px-3 text-xs font-bold text-white uppercase ${
+        className={`flex h-full items-center border-t-6 border-transparent px-3 text-xs font-extrabold tracking-[0.05em] text-white uppercase ${
           isInsights ? "border-vts-primary bg-white/10" : ""
         }`}
       >
@@ -66,7 +67,16 @@ export default function GlobalHeader() {
           Insights
         </Link>
       </span>
-      <span className="flex h-full cursor-pointer items-center border-t-6 border-transparent px-3 text-xs font-bold text-white uppercase">
+      <span
+        className={`flex h-full items-center border-t-6 border-transparent px-3 text-xs font-extrabold tracking-[0.05em] text-white uppercase ${
+          isActivate ? "border-vts-primary bg-white/10" : ""
+        }`}
+      >
+        <Link className="py-2" href="/vts/activate">
+          Activate
+        </Link>
+      </span>
+      <span className="flex h-full cursor-pointer items-center border-t-6 border-transparent px-3 text-xs font-extrabold tracking-[0.05em] text-white uppercase">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
