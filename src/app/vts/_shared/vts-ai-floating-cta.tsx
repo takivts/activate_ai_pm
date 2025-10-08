@@ -34,13 +34,14 @@ export default function VtsAiFloatingCTA({ className }: { className?: string }) 
   const pathname = usePathname();
 
   const FormatVtsAiContent = () => {
-    // Show Assistant modal only on deals profile page
-    // Check if pathname includes "deals" and "profile" to handle dynamic routes
-    const isDealsProfile = pathname?.includes("/deals/") && pathname?.includes("/profile");
+    // Show Assistant modal on deals profile, activate, and dealsv2 pages
+    const isAssistantPage = pathname?.includes("/vts/lease/deals/profile") || 
+                           pathname?.includes("/vts/activate") ||
+                           pathname?.includes("/vts/lease/dealsv2");
     
-    console.log("VTS AI Debug:", { pathname, isDealsProfile, vtsAiContentType });
+    console.log("VTS AI Debug:", { pathname, isAssistantPage, vtsAiContentType });
     
-    if (isDealsProfile) {
+    if (isAssistantPage) {
       return <VtsAiAssistant className="absolute right-24 bottom-16" isOpen={isVtsAiOpen} />;
     } else if (vtsAiContentType === "tenant") {
       return <VtsAiTenantProfile className="absolute right-24 bottom-16" isOpen={isVtsAiOpen} />;
@@ -78,9 +79,11 @@ export default function VtsAiFloatingCTA({ className }: { className?: string }) 
   }, []);
 
   const handleFloatingCTAClick = () => {
-    // Don't set content type on deals profile page - let assistant handle it
-    const isDealsProfile = pathname?.includes("/deals/") && pathname?.includes("/profile");
-    if (!isDealsProfile) {
+    // Don't set content type on assistant pages - let assistant handle it
+    const isAssistantPage = pathname?.includes("/vts/lease/deals/profile") || 
+                           pathname?.includes("/vts/activate") ||
+                           pathname?.includes("/vts/lease/dealsv2");
+    if (!isAssistantPage) {
       setVtsAiContentType("default");
     }
     setIsVtsAiOpen(!isVtsAiOpen);
@@ -93,13 +96,15 @@ export default function VtsAiFloatingCTA({ className }: { className?: string }) 
     }
   };
 
-  const isDealsProfile = pathname?.includes("/deals/") && pathname?.includes("/profile");
+  const isAssistantPage = pathname?.includes("/vts/lease/deals/profile") || 
+                           pathname?.includes("/vts/activate") ||
+                           pathname?.includes("/vts/lease/dealsv2");
   
   const { currentPrompt } = usePromptCycle({
     promptDuration: 8000,
     promptDelay: 8000,
     initialDelay: 5000,
-    isActive: !isVtsAiOpen && !isDealsProfile, // Disable prompts on deals profile
+    isActive: !isVtsAiOpen && !isAssistantPage, // Disable prompts on assistant pages
   });
 
   const handlePromptClick = () => {

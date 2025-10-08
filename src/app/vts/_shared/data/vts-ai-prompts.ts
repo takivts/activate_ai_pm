@@ -305,6 +305,27 @@ export const vtsAiPromptsWithContext: VtsAiPrompt[] = [
         "What are the top industries driving demand right now?",
         "Where should I allocate capital based on current market conditions?",
         "What space sizes are most in demand right now?",
+        "Portfolio Agent",
+      ],
+    },
+  },
+  {
+    prompt: "Portfolio Agent",
+    payload: {
+      marketMetadata: {
+        category: "Portfolio Agent",
+      },
+      summary: [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+      ],
+      keyInsights: [
+        "Curabitur blandit tempus porttitor. Donec sed odio dui.",
+        "Praesent commodo cursus magna, vel scelerisque nisl consectetur et.",
+      ],
+      suggestedFollowUps: [
+        "Where should I allocate capital based on current market conditions?",
+        "Which markets are most attractive for investment based on demand trends?",
+        "What tenants are driving demand?",
       ],
     },
   },
@@ -629,6 +650,27 @@ export const vtsAiPromptsWithoutContext: VtsAiPrompt[] = [
         "What's the average rent right now?",
         "How are rents trending year-over-year?",
         "Which markets are most attractive for investment based on demand trends?",
+        "Portfolio Agent",
+      ],
+    },
+  },
+  {
+    prompt: "Portfolio Agent",
+    payload: {
+      marketMetadata: {
+        category: "Portfolio Agent",
+      },
+      summary: [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+      ],
+      keyInsights: [
+        "Curabitur blandit tempus porttitor. Donec sed odio dui.",
+        "Praesent commodo cursus magna, vel scelerisque nisl consectetur et.",
+      ],
+      suggestedFollowUps: [
+        "Which markets are attractive for investment based on tour activity?",
+        "Which submarkets are leading in active demand this month?",
+        "Which markets show strongest demand growth for investment?",
       ],
     },
   },

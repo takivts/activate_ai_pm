@@ -37,7 +37,7 @@ export default function VtsLeaseLayout({
     inventoryNavItems,
   ];
 
-  const isActivatePage = pathname?.includes("/vts/lease/deals/profile");
+  const isActivatePage = pathname?.includes("/vts/lease/deals/profile") || pathname?.includes("/vts/activate");
 
   // For Activate page, only show the content and AI modal
   if (isActivatePage) {
